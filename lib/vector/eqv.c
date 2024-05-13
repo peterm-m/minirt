@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   eqv.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 20:57:52 by pedromar          #+#    #+#             */
-/*   Updated: 2023/07/06 20:59:51 by pedromar         ###   ########.fr       */
+/*   Updated: 2023/08/12 23:49:09 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "ft_vector.h"
 
 bool	ft_eqv2(t_vec2 v1, t_vec2 v2)
 {

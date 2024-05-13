@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   divmf.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 20:53:44 by pedromar          #+#    #+#             */
-/*   Updated: 2023/07/06 20:55:58 by pedromar         ###   ########.fr       */
+/*   Updated: 2023/08/12 23:49:09 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "ft_vector.h"
 
 t_matrix2	ft_divm2f(t_matrix2 m, float f)
 {

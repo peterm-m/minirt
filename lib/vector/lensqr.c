@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   lensqr.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 21:33:16 by pedromar          #+#    #+#             */
-/*   Updated: 2023/07/06 21:34:31 by pedromar         ###   ########.fr       */
+/*   Updated: 2023/08/12 23:49:09 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "ft_vector.h"
 
 float	ft_lensqrv2(t_vec2 v)
 {

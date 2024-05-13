@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cross.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 21:05:54 by pedromar          #+#    #+#             */
-/*   Updated: 2023/07/07 18:39:17 by pedromar         ###   ########.fr       */
+/*   Updated: 2023/08/12 23:49:09 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "ft_vector.h"
 
 t_vec3	ft_cross(t_vec3 v1, t_vec3 v2)
 {

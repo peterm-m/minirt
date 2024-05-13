@@ -5,31 +5,23 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/11 17:44:19 by pedromar          #+#    #+#             */
-/*   Updated: 2024/05/11 19:47:50 by pedromar         ###   ########.fr       */
+/*   Created: 2024/05/13 17:47:54 by pedromar          #+#    #+#             */
+/*   Updated: 2024/05/13 18:31:41 by pedromar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include <stdio.h>
+#include <stdlib.h>
 
-static int	minirt_loop(int argc, char **argv)
+#include "colors.h"
+
+int main (int argc, char* argv[])
 {
-	(void) argv;
-	(void) argc;
-	mlx_test();
-	//while (1)
-	//	continue ;
-	return (0);
-}
-
-// create scree, statica de con mlx, primera ventana la inicializa
-
-int main (int argc, char **argv)
-{
-	printf("oOoOoOoOoOooOoOoOoOoOo|   miniRT   |oOoOoOoOoOooOoOoOoOoOo\n");
 #ifdef DEBUG
-	// debug code
+	/* Debug */
 #endif
-	minirt_loop(argc, argv);
+	(void)argc;
+	(void)argv;
 	return (EXIT_SUCCESS);
 }
+

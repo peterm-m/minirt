@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minirt.h                                           :+:      :+:    :+:   */
+/*   colors.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/11 17:45:23 by pedromar          #+#    #+#             */
-/*   Updated: 2024/05/11 19:48:08 by pedromar         ###   ########.fr       */
+/*   Created: 2024/05/13 17:48:06 by pedromar          #+#    #+#             */
+/*   Updated: 2024/05/13 17:50:37 by pedromar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-# define MINIRT_H
+#ifndef COLORS_H
+# define COLORS_H
 
-# include <stdbool.h>
-# include <stdlib.h>
-# include <stdio.h>
+# define NO_COLOR    "\x1b[0m"
+# define RED         "\x1b[31m"
+# define GREEN       "\x1b[32m"
+# define BROWN       "\x1b[33m"
+# define BLUE        "\x1b[34m"
+# define MAGENTA     "\x1b[35m"
+# define CYAN        "\x1b[36m"
+# define GRAY        "\x1b[37m"
 
-int	mlx_test(void);
-
-#endif // MINIRT_H
+#endif // COLORS_H

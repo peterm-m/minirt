@@ -5,120 +5,129 @@
 #                                                     +:+ +:+         +:+      #
 #    By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/05/11 17:29:47 by pedromar          #+#    #+#              #
-#    Updated: 2024/05/11 19:46:36 by pedromar         ###   ########.fr        #
+#    Created: 2024/05/13 17:51:17 by pedromar          #+#    #+#              #
+#    Updated: 2024/05/13 19:35:28 by pedromar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-BINARY := miniRT
+PROJECT_NAME := miniRT
 
-PROJECT_PATH := .
+BINARY := minirt
 
+PROJECT_PATH := ../$(PROJECT_NAME)
+
+# Gets the Operating system name
 OS := $(shell uname -s)
 
+# Default shell
 SHELL := bash
 
-# Color prefix for Linux distributions
-COLOR_PREFIX := e
-
-ifeq ($(OS),Darwin)
-	COLOR_PREFIX := 033
-endif
-
 # Color definition for print purpose
-BROWN=\$(COLOR_PREFIX)[0;33m
-BLUE=\$(COLOR_PREFIX)[1;34m
-END_COLOR=\$(COLOR_PREFIX)[0m
+BROWN := \e[0;33m
+BLUE := \e[1;34m
+END_COLOR := \e[0m
 
 # Source code directory structure
-BINDIR := bin
-SRCDIR := src
+BINDIR := .
 LOGDIR := log
-LIBDIR := lib
-TESTDIR := test
-
-# Source code file extension
-SRCEXT := c
+BUILDDIR := .build
+TESTDIR := .test
+LIBDIR := ./lib
+INCDIR := ./include
+SRCDIR := src
 
 # Defines the C Compiler
 CC := gcc
 
-# Defines the language standards for GCC
-STD := -std=gnu99 # See man gcc for more options
-
-# Protection for stack-smashing attack
-STACK := -fstack-protector-all -Wstack-protector
-
-# Specifies to GCC the required warnings
-WARNS := -Wall -Wextra # -pedantic warns on language standards
+WARNS := -Wall -Wextra -fsanitize=undefined -fsanitize=address # -Werror
 
 # Flags for compiling
-CFLAGS := -O3 $(STD) $(STACK) $(WARNS)
+CFLAGS := $(WARNS) # -O3
 
 # Debug options
 DEBUG := -g3 -DDEBUG=1
 
 # Dependency libraries
-LIBS := -I/usr/include -I$(LIBDIR)/minilibx-linux \
-	-L $(LIBDIR)/minilibx-linux -lmlx -lmlx_Linux -lXext -lX11 -lm -lbsd
-
-# Test libraries
-TEST_LIBS := -l cmocka -L /usr/lib
+LIBS := -lXext -lX11 -lm \
+	-I$(INCDIR) \
+	-I$(LIBDIR)/array -L$(LIBDIR)/array -larray \
+	-I$(LIBDIR)/vector -L$(LIBDIR)/vector -lvector \
+	-I$(LIBDIR)/minilibx-linux -L$(LIBDIR)/minilibx-linux -lmlx \
 
 # Tests binary file
 TEST_BINARY := $(BINARY)_test_runner
 
 # %.o file names
-NAMES := $(notdir $(basename $(wildcard $(SRCDIR)/*.$(SRCEXT))))
-OBJECTS :=$(patsubst %,$(LIBDIR)/%.o,$(NAMES))
+NAMES := $(notdir $(basename $(wildcard $(SRCDIR)/*.c)))
+OBJECTS :=$(patsubst %,$(BUILDDIR)/%.o,$(NAMES))
 
 #
-# RULES
+# COMPILATION RULES
 #
 
 default: all
 
 # Rule for link and generate the binary file
-all: $(OBJECTS)
+
+all: libs project
+
+project: $(OBJECTS)
 	@echo -en "$(BROWN)LD $(END_COLOR)";
 	$(CC) -o $(BINDIR)/$(BINARY) $+ $(DEBUG) $(CFLAGS) $(LIBS)
 	@echo -en "\n--\nBinary file placed at" \
 			  "$(BROWN)$(BINDIR)/$(BINARY)$(END_COLOR)\n";
 
-run:
-	./$(BINDIR)/$(BINARY)
+libs:
+	@echo -e "$(BROWN)LIB: array$(END_COLOR)";
+	@make --silent -C $(LIBDIR)/array
+	@echo -e "$(BROWN)LIB: vector$(END_COLOR)";
+	@make --silent -C $(LIBDIR)/vector
+	@echo -e "$(BROWN)LIB: minilibx-linux$(END_COLOR)";
+	@make --silent -C $(LIBDIR)/minilibx-linux
 
 # Rule for object binaries compilation
-$(LIBDIR)/%.o: $(SRCDIR)/%.$(SRCEXT)
+$(BUILDDIR)/%.o: $(SRCDIR)/%.c
 	@echo -en "$(BROWN)CC $(END_COLOR)";
 	$(CC) -c $^ -o $@ $(DEBUG) $(CFLAGS) $(LIBS)
 
 # Rule for run valgrind tool
 valgrind:
 	valgrind \
-		--track-origins=yes \
-		--leak-check=full \
-		--leak-resolution=high \
-		--log-file=$(LOGDIR)/$@.log \
+		--track-origins=yes --leak-check=full \
+		--leak-resolution=high --log-file=$(LOGDIR)/$@.log \
 		$(BINDIR)/$(BINARY)
 	@echo -en "\nCheck the log file: $(LOGDIR)/$@.log\n"
 
-normi:
-	norminette
+profiling:
+# https://valgrind.org/docs/manual/cl-manual.html
+# https://developer.mantidproject.org/ProfilingWithValgrind.html
+	valgrind --tool=callgrind --callgrind-out-file=$(LOGDIR)/callgrind.out \
+	--dump-instr=yes --simulate-cache=yes --collect-jumps=yes \
+	--log-file=$(LOGDIR)/$@.log $(BINDIR)/$(BINARY) 
+	
+	@echo -en "\nCheck the log file: $(LOGDIR)/$@.log\n"
 
 # Compile tests and run the test binary
-tests:
+tests: libs
 	@echo -en "$(BROWN)CC $(END_COLOR)";
-	$(CC) $(TESTDIR)/main.c -o $(BINDIR)/$(TEST_BINARY) $(DEBUG) $(CFLAGS) $(LIBS) $(TEST_LIBS)
-	@which ldconfig && ldconfig -C /tmp/ld.so.cache || true # caching the library linking
+	$(CC) $(TESTDIR)/main.c $(TESTDIR)/munit.c -o $(TESTDIR)/$(TEST_BINARY) $(DEBUG) $(CFLAGS) $(LIBS) $(TEST_LIBS)
 	@echo -en "$(BROWN) Running tests: $(END_COLOR)";
-	./$(BINDIR)/$(TEST_BINARY)
+	./$(TESTDIR)/$(TEST_BINARY)
 
-# Rule for cleaning the project
-fclean: clean
-	@rm -rvf $(BINDIR)/*
-
+# Rule for clean object
 clean:
-	@rm -rvf $(LOGDIR)/*;
+	make -C $(LIBDIR)/array clean
+	make -C $(LIBDIR)/minilibx-linux clean
+	make -C $(LIBDIR)/vector clean
+	@rm -rvf $(BUILDDIR)/* $(LOGDIR)/*;
 
+# Rule for clean object, libs and binary
+fclean: clean
+	make -C $(LIBDIR)/array clean
+	make -C $(LIBDIR)/minilibx-linux clean
+	make -C $(LIBDIR)/vector clean
+	@rm -rvf $(BUILDDIR)/* $(LOGDIR)/*
+	@rm -vf $(BINDIR)/$(BINARY) ./$(TESTDIR)/$(TEST_BINARY)
+
+# Rule for re-make 
 re: fclean all

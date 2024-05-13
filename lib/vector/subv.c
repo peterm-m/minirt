@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   subv.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 20:26:09 by pedromar          #+#    #+#             */
-/*   Updated: 2023/07/18 19:43:06 by pedromar         ###   ########.fr       */
+/*   Updated: 2023/08/12 23:49:09 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "ft_vector.h"
 
 t_vec2	ft_subv2(t_vec2 v1, t_vec2 v2)
 {

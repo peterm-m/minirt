@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   linearcomb.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 21:09:29 by pedromar          #+#    #+#             */
-/*   Updated: 2023/07/07 19:57:08 by pedromar         ###   ########.fr       */
+/*   Updated: 2023/08/12 23:49:09 by pedro            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "ft_vector.h"
 
 t_vec4	ft_linear_combv4m4(t_vec4 v, t_matrix4 m)
 {
