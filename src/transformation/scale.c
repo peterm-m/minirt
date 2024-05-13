@@ -1,40 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_minirt.h                                       :+:      :+:    :+:   */
+/*   scale.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/11 18:37:29 by pedromar          #+#    #+#             */
-/*   Updated: 2024/05/13 21:05:48 by pedromar         ###   ########.fr       */
+/*   Created: 2023/07/07 18:37:13 by pedromar          #+#    #+#             */
+/*   Updated: 2024/05/13 20:13:37 by pedromar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MLX_MINIRT_H
-# define MLX_MINIRT_H
+#include "ft_vector.h"
 
-# include "minirt.h"
-# include	"mlx.h"
-# include	"mlx_int.h"
-
-# define	DEFAULT_WIN_SX		242
-# define	DEFAULT_WIN_SY		242
-
-# define	DEFAULT_IMG_SX		42
-# define	DEFAULT_IMG_SY		42
-
-typedef struct	s_mlx
+t_matrix4	scale(t_vec3 scale)
 {
-	void	*mlx;
-	void	*win;
-	void	*im;
-	int		bpp;
-	int		sl;
-	int		endian;
-	char	*data;
-}	t_mlx;
+	t_matrix4	m;
 
-void	*getmlx(void);
-t_mlx	*new_mlx(char *name);
+	m = ft_ident4();
+	m.elements[0][0] = scale.x;
+	m.elements[1][1] = scale.y;
+	m.elements[2][2] = scale.z;
+	return (m);
+}
 
-#endif // MLX_MINIRT_H
+t_matrix4	invscale(t_matrix4 scale_m)
+{
+	t_matrix4	m;
+
+	m = scale_m;
+	m.elements[0][0] = 1.0f / m.elements[0][0];
+	m.elements[1][1] = 1.0f / m.elements[1][1];
+	m.elements[2][2] = 1.0f / m.elements[2][2];
+	return (m);
+}

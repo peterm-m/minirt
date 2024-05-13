@@ -6,7 +6,7 @@
 /*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 17:45:23 by pedromar          #+#    #+#             */
-/*   Updated: 2024/05/13 19:48:46 by pedromar         ###   ########.fr       */
+/*   Updated: 2024/05/13 21:05:25 by pedromar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,7 @@
 # include <stdbool.h>
 # include <stdlib.h>
 # include <stdio.h>
+
+void	*mallox(size_t size);
 
 #endif // MINIRT_H

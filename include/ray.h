@@ -1,40 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_minirt.h                                       :+:      :+:    :+:   */
+/*   ray.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/11 18:37:29 by pedromar          #+#    #+#             */
-/*   Updated: 2024/05/13 21:05:48 by pedromar         ###   ########.fr       */
+/*   Created: 2024/05/13 19:58:27 by pedromar          #+#    #+#             */
+/*   Updated: 2024/05/13 20:09:28 by pedromar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MLX_MINIRT_H
-# define MLX_MINIRT_H
+#ifndef MINIRT_H
+# define MINIRT_H
 
-# include "minirt.h"
-# include	"mlx.h"
-# include	"mlx_int.h"
+#include "ft_vector.h"
 
-# define	DEFAULT_WIN_SX		242
-# define	DEFAULT_WIN_SY		242
-
-# define	DEFAULT_IMG_SX		42
-# define	DEFAULT_IMG_SY		42
-
-typedef struct	s_mlx
+typedef struct	s_ray
 {
-	void	*mlx;
-	void	*win;
-	void	*im;
-	int		bpp;
-	int		sl;
-	int		endian;
-	char	*data;
-}	t_mlx;
+	t_vec3	d;
+	t_vec3	o;
+	float	t;
+}	t_ray;
 
-void	*getmlx(void);
-t_mlx	*new_mlx(char *name);
+t_vec3	ray_in_t(t_ray *r);
 
-#endif // MLX_MINIRT_H
+#endif  // MINIRT_H
