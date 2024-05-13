@@ -1,27 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   getmlx.c                                           :+:      :+:    :+:   */
+/*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/11 18:49:22 by pedromar          #+#    #+#             */
-/*   Updated: 2024/05/13 19:49:43 by pedromar         ###   ########.fr       */
+/*   Created: 2024/05/11 17:45:23 by pedromar          #+#    #+#             */
+/*   Updated: 2024/05/13 19:48:46 by pedromar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx_minirt.h"
+#ifndef MINIRT_H
+# define MINIRT_H
 
-void	*getmlx(void)
-{
-	static void	*mlx;
+# include <stdbool.h>
+# include <stdlib.h>
+# include <stdio.h>
 
-	if (mlx == NULL)
-		mlx = mlx_init();
-	if (!mlx)
-	{
-		printf("mlx error\n");
-		exit(EXIT_FAILURE);
-	}
-	return (mlx);
-}
+#endif // MINIRT_H
