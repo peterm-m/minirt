@@ -1,0 +1,8 @@
+{
+	"files.associations": {
+		"camera.h": "c",
+		"stdlib.h": "c",
+		"mlx_minirt.h": "c",
+		"minirt.h": "c"
+	}
+}

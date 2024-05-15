@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   getmlx.c                                           :+:      :+:    :+:   */
+/*   control.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/11 18:49:22 by pedromar          #+#    #+#             */
-/*   Updated: 2024/05/15 18:07:48 by pedromar         ###   ########.fr       */
+/*   Created: 2024/05/15 18:25:44 by pedromar          #+#    #+#             */
+/*   Updated: 2024/05/15 18:47:38 by pedromar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx_minirt.h"
+#include "camera.h"
+#include "minirt.h"
 
-void	*getmlx(void)
+int ft_end_program(t_render *r)
 {
-	static void	*mlx;
+	mlx_destroy_image((r->img->win).mlx, r->img->ptr);
+	mlx_destroy_window((r->img->win).mlx, (r->img->win).win);
+	return (EXIT_SUCCESS);
+}
 
-	if (mlx == NULL)
-		mlx = mlx_init();
-	if (!mlx)
-	{
-		printf("mlx error\n");
-		exit(EXIT_FAILURE);
-	}
-	return (mlx);
+int		ft_plot_map(t_render *r)
+{
+	(void *)r;
+	return (EXIT_SUCCESS);
 }
