@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_minirt.h                                       :+:      :+:    :+:   */
+/*   render.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/11 18:37:29 by pedromar          #+#    #+#             */
-/*   Updated: 2024/05/15 18:47:36 by pedromar         ###   ########.fr       */
+/*   Created: 2024/05/20 15:24:37 by pedromar          #+#    #+#             */
+/*   Updated: 2024/05/20 15:59:53 by pedromar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MLX_MINIRT_H
-# define MLX_MINIRT_H
+#ifndef RENDER_H
+# define RENDER_H
 
+# include	"ft_vector.h"
+# include	"geometric.h"
 # include	"minirt.h"
-# include	"mlx.h"
-# include	"mlx_int.h"
 
-# define	DEFAULT_WIN_SX		242
-# define	DEFAULT_WIN_SY		242
+# define	DEFAULT_WIN_SX		1024
+# define	DEFAULT_WIN_SY		1024
 
 # define	DEFAULT_image_SX		42
 # define	DEFAULT_image_SY		42
+
+# define PROJ_TYPE_ORTHO	1
 
 typedef struct s_win
 {
@@ -54,12 +56,38 @@ typedef struct	s_mlx
 	char	*data;
 }	t_mlx;
 
+typedef struct s_cam
+{
+	t_vec3		pos_view;
+	t_vec3		rot_view;
+	t_vec3		pos_model;
+	t_vec3		rot_model;
+	t_vec3		proj_max;
+	t_vec3		proj_min;
+	t_vec3		scale;
+	int			proj_type;
+	int			button_press;
+	t_matrix4	view;
+	t_matrix4	model;
+	t_matrix4	proj;
+	t_matrix4	trasform;
+}	t_cam;
+
+//todo:
+//	render: type
+//	Segun type se interpreta points
+//	actualmente solo se unen los puntos
+
 typedef struct s_render
 {
-	t_image	*img;
-	t_cam	*cam;
+	t_image		*img;
+	t_cam		*cam;
+	t_point		*p;
+	int			n_point;
 }	t_render;
 
-void	*getmlx(void);
+void	new_camera(t_render *r);
+void	set_transform(t_cam *c);
+void	default_camera(t_render *r);
 
-#endif // MLX_MINIRT_H
+#endif // RENDER_H

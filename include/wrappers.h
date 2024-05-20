@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray.h                                              :+:      :+:    :+:   */
+/*   wrappers.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/13 19:58:27 by pedromar          #+#    #+#             */
-/*   Updated: 2024/05/20 16:59:03 by pedromar         ###   ########.fr       */
+/*   Created: 2024/05/20 15:18:49 by pedromar          #+#    #+#             */
+/*   Updated: 2024/05/20 15:20:14 by pedromar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RAY_H
-# define RAY_H
+#ifndef WRAPPERS_H
+# define WRAPPERS_H
 
-#include "ft_vector.h"
+# include	"mlx.h"
+# include	"mlx_int.h"
+# include 	<stdlib.h>
 
-typedef struct	s_ray
-{
-	t_vec3	d;
-	t_vec3	o;
-	float	t;
-}	t_ray;
+void	*ft_getmlx(void);
+void	*ft_new_image(int w, int h);
+void	*ft_new_windows(int w, int h, char *name);
+void	*mallox(size_t size);
 
-#endif  // RAY_H
+#endif // WRAPPERS_H

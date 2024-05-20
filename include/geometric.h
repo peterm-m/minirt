@@ -1,23 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mallox.c                                           :+:      :+:    :+:   */
+/*   geometric.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/13 20:51:33 by pedromar          #+#    #+#             */
-/*   Updated: 2024/05/13 20:55:47 by pedromar         ###   ########.fr       */
+/*   Created: 2023/06/11 14:43:41 by pedromar          #+#    #+#             */
+/*   Updated: 2024/05/20 15:57:20 by pedromar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#ifndef GEOMETRIC_H
+# define GEOMETRIC_H
 
-void	*mallox(size_t size)
+
+# include "minirt.h"
+# include <sys/param.h>
+
+typedef struct s_point
 {
-	void	*new;
+	t_vec4	r;
+	t_vec4	color;
+}	t_point;
 
-	new = malloc(size);
-	if (!new)
-		exit (EXIT_FAILURE);
-	return (new);
-}
+typedef struct s_line
+{
+	int		dx;
+	int		dy;
+	int		dz;
+	int		sx;
+	int		sy;
+	int		sz;
+	int		x0;
+	int		y0;
+	int		z0;
+	int		x1;
+	int		y1;
+	int		z1;
+	int		dm;
+	int		i;
+	t_vec4	c;
+	t_vec4	dc;
+}	t_line;
+
+#endif

@@ -6,42 +6,29 @@
 /*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 17:47:54 by pedromar          #+#    #+#             */
-/*   Updated: 2024/05/15 18:56:30 by pedromar         ###   ########.fr       */
+/*   Updated: 2024/05/20 16:31:36 by pedromar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
+#include "minirt.h"
 
-#include "mlx_minirt.h"
-#include "camera.h"
-#include "colors.h"
-
-void	ft_image(t_image *img, t_win *win, int w, int h)
+void	ft_image(t_render *r, t_win *win, int w, int h)
 {
-	img = (t_image *)malloc(sizeof(t_image));
-	img->win = *win;
-	img->ptr = mlx_new_image(win->mlx, w, h);
-	if (!img->ptr)
-		exit(EXIT_FAILURE);
-	img->addr = mlx_get_data_addr(img->ptr, &(img->bpp),
-			&(img->size_line), &(img->endian));
-	img->w = w;
-	img->h = h;
+	r->img = (t_image *) mallox(sizeof(t_image));
+	r->img->win = *win;
+	r->img->ptr = ft_new_image(w, h);
+	r->img->addr = mlx_get_data_addr(r->img->ptr, &(r->img->bpp),
+			&(r->img->size_line), &(r->img->endian));
+	r->img->w = w;
+	r->img->h = h;
 }
 
 t_win	ft_program(int h, int w, char *str)
 {
-	void	*mlx_ptr;
 	void	*win;
 
-	mlx_ptr = mlx_init();
-	if (!mlx_ptr)
-		exit(EXIT_FAILURE);
-	win = mlx_new_window(mlx_ptr, w, h, str);
-	if (!win)
-		exit(EXIT_FAILURE);
-	return ((t_win){mlx_ptr, win, w, h});
+	win = ft_new_windows(w, h, str);
+	return ((t_win){ft_getmlx(), win, w, h});
 }
 
 t_render	*set_render(t_win *win)
@@ -49,19 +36,11 @@ t_render	*set_render(t_win *win)
 	t_render	*new;
 
 	new = (t_render *)mallox(sizeof(t_render));
-	if (!new)
-		exit(EXIT_FAILURE);
 	ft_image(new, win, 1024, 1024);
-	new->cam = new_camera();
+	points_box(new);
+	new_camera(new);
 	set_transform(new->cam);
 	return (new);
-}
-
-
-
-void	set_control(t_render *r)
-{
-	mlx_loop_hook(r->img->win.mlx, &ft_plot_map, &r);
 }
 
 int main (int argc, char* argv[])
@@ -72,8 +51,7 @@ int main (int argc, char* argv[])
 	(void)argc;
 	(void)argv;
 
-	t_win	win =  ft_program(1024, 1024, "Example");
-
+	t_win	win =  ft_program(1024, 1024, "minirt");
 	t_render *r = set_render(&win);
 	set_control(r);
 	mlx_loop(win.mlx);

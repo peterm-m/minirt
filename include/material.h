@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray.h                                              :+:      :+:    :+:   */
+/*   material.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pedromar <pedromar@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/13 19:58:27 by pedromar          #+#    #+#             */
-/*   Updated: 2024/05/20 16:59:03 by pedromar         ###   ########.fr       */
+/*   Created: 2024/05/20 13:00:10 by pedromar          #+#    #+#             */
+/*   Updated: 2024/05/20 13:16:12 by pedromar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RAY_H
-# define RAY_H
+#ifndef MATERIAL_H
+# define MATERIAL_H
 
-#include "ft_vector.h"
+# include "ft_vector.h"
 
-typedef struct	s_ray
+typedef struct	s_material
 {
-	t_vec3	d;
-	t_vec3	o;
-	float	t;
-}	t_ray;
+	float	reflectivity;
+	float	transmissivity;
+	t_vec3	surface_color;
+	t_vec3	emission_color;
+} t_material;
 
-#endif  // RAY_H
+
+#endif /* MATERIAL_H*/
+

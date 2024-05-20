@@ -85,3 +85,6 @@ fclean: clean
 re:
 	$(MAKE) fclean
 	$(MAKE) all
+
+tests:
+	@make -C .test

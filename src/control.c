@@ -6,22 +6,26 @@
 /*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 18:25:44 by pedromar          #+#    #+#             */
-/*   Updated: 2024/05/15 18:47:38 by pedromar         ###   ########.fr       */
+/*   Updated: 2024/05/20 16:58:00 by pedromar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "camera.h"
 #include "minirt.h"
 
-int ft_end_program(t_render *r)
+void	set_control(t_render *r)
+{
+	mlx_hook(r->img->win.win, 2, 1L << 0, &key_manager, r);
+	mlx_hook(r->img->win.win, 3, 1L << 0L, &key_manager, r);
+	mlx_hook(r->img->win.win, 4, 1L << 2, &mouse_button_manager, r);
+	mlx_hook(r->img->win.win, 5, 1L << 3, &mouse_button_release, r);
+	mlx_hook(r->img->win.win, 6, 1L << 6, &mouse_motion_manager, r);
+	mlx_hook(r->img->win.win, 17, 0L, &ft_end_program, r);
+	mlx_loop_hook(r->img->win.mlx, &rt_loop, r);
+}
+
+int	ft_end_program(t_render *r)
 {
 	mlx_destroy_image((r->img->win).mlx, r->img->ptr);
 	mlx_destroy_window((r->img->win).mlx, (r->img->win).win);
-	return (EXIT_SUCCESS);
-}
-
-int		ft_plot_map(t_render *r)
-{
-	(void *)r;
 	return (EXIT_SUCCESS);
 }

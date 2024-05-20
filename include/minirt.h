@@ -6,7 +6,7 @@
 /*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 17:45:23 by pedromar          #+#    #+#             */
-/*   Updated: 2024/05/15 18:47:59 by pedromar         ###   ########.fr       */
+/*   Updated: 2024/05/20 16:58:12 by pedromar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,24 @@
 # include <stdlib.h>
 # include <stdio.h>
 
-# include "camera.h"
-# include "mlx_minirt.h"
+# include "ft_vector.h"
 
-typedef struct s_render t_render;
+# include "colors.h"
+# include "render.h"
+# include "geometric.h"
+# include "controls.h"
+# include "transformation.h"
+# include "wrappers.h"
+# include "plotter.h"
+
+# ifndef M_PI
+#  define M_PI   3.14159265358979323846264338327950288
+# endif
+
 
 void	*mallox(size_t size);
-int		ft_plot_map(t_render *r);
+int		ft_plot_points(t_render *r);
+int		rt_loop(t_render *r);
 int 	ft_end_program(t_render *r);
 
 #endif // MINIRT_H

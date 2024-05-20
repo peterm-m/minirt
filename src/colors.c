@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray.h                                              :+:      :+:    :+:   */
+/*   colors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/13 19:58:27 by pedromar          #+#    #+#             */
-/*   Updated: 2024/05/20 16:59:03 by pedromar         ###   ########.fr       */
+/*   Created: 2024/05/20 15:21:35 by pedromar          #+#    #+#             */
+/*   Updated: 2024/05/20 15:51:20 by pedromar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RAY_H
-# define RAY_H
+#include	"minirt.h"
 
-#include "ft_vector.h"
-
-typedef struct	s_ray
+unsigned int	set_rgba(t_vec4	c)
 {
-	t_vec3	d;
-	t_vec3	o;
-	float	t;
-}	t_ray;
+	return ((unsigned int) c.b
+		| (unsigned int) c.g << 8
+		| (unsigned int) c.r << 16);
+}
 
-#endif  // RAY_H
+t_vec4	get_rgba(float color)
+{
+	t_vec4	c;
+
+	c.r = (((unsigned int)color >> 16) & 0xFF);
+	c.g = (((unsigned int)color >> 8) & 0xFF);
+	c.b = (((unsigned int)color) & 0xFF);
+	c.a = 0.0f;
+	return (c);
+}

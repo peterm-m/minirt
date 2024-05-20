@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   getmlx.c                                           :+:      :+:    :+:   */
+/*   plotter.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/11 18:49:22 by pedromar          #+#    #+#             */
-/*   Updated: 2024/05/15 18:07:48 by pedromar         ###   ########.fr       */
+/*   Created: 2024/05/11 18:37:29 by pedromar          #+#    #+#             */
+/*   Updated: 2024/05/20 16:58:15 by pedromar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx_minirt.h"
+#ifndef PLOTTER_H
+# define PLOTTER_H
 
-void	*getmlx(void)
-{
-	static void	*mlx;
+# include	"minirt.h"
 
-	if (mlx == NULL)
-		mlx = mlx_init();
-	if (!mlx)
-	{
-		printf("mlx error\n");
-		exit(EXIT_FAILURE);
-	}
-	return (mlx);
-}
+void	ft_put_pixel(t_image *img, int x, int y, int c);
+int		ft_plot_line(t_render *r, t_point p0, t_point p1);
+
+void	points_axis(t_render *r);
+void	points_box(t_render *r);
+
+#endif // PLOTTER_H
