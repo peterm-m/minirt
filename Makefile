@@ -6,7 +6,7 @@
 #    By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/13 17:51:17 by pedromar          #+#    #+#              #
-#    Updated: 2024/05/13 20:45:27 by pedromar         ###   ########.fr        #
+#    Updated: 2024/05/21 12:20:33 by pedromar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,6 +51,8 @@ DEBUG := -g3 -DDEBUG=1
 LIBS := -lXext -lX11 -lm \
 	-I$(INCDIR) \
 	-I$(LIBDIR)/array -L$(LIBDIR)/array -larray \
+	-I$(LIBDIR)/dlst -L$(LIBDIR)/dlst -ldlst \
+	-I$(LIBDIR)/libft -L$(LIBDIR)/libft -lft \
 	-I$(LIBDIR)/vector -L$(LIBDIR)/vector -lvector \
 	-I$(LIBDIR)/minilibx-linux -L$(LIBDIR)/minilibx-linux -lmlx \
 
@@ -80,6 +82,10 @@ project: $(OBJECTS)
 libs:
 	@echo -e "$(BROWN)LIB: array$(END_COLOR)";
 	@make --silent -C $(LIBDIR)/array
+	@echo -e "$(BROWN)LIB: dlst$(END_COLOR)";
+	@make --silent -C $(LIBDIR)/dlst
+	@echo -e "$(BROWN)LIB: libft$(END_COLOR)";
+	@make --silent -C $(LIBDIR)/libft
 	@echo -e "$(BROWN)LIB: vector$(END_COLOR)";
 	@make --silent -C $(LIBDIR)/vector
 	@echo -e "$(BROWN)LIB: minilibx-linux$(END_COLOR)";
@@ -117,6 +123,8 @@ tests: libs
 # Rule for clean object
 clean:
 	make -C $(LIBDIR)/array clean
+	make -C $(LIBDIR)/dlst clean
+	make -C $(LIBDIR)/libft clean
 	make -C $(LIBDIR)/minilibx-linux clean
 	make -C $(LIBDIR)/vector clean
 	@rm -rvf $(BUILDDIR)/* $(LOGDIR)/*;
@@ -124,6 +132,8 @@ clean:
 # Rule for clean object, libs and binary
 fclean: clean
 	make -C $(LIBDIR)/array clean
+	make -C $(LIBDIR)/dlst clean
+	make -C $(LIBDIR)/libft clean
 	make -C $(LIBDIR)/minilibx-linux clean
 	make -C $(LIBDIR)/vector clean
 	@rm -rvf $(BUILDDIR)/* $(LOGDIR)/*
