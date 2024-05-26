@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   plotter.h                                          :+:      :+:    :+:   */
+/*   normv.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/11 18:37:29 by pedromar          #+#    #+#             */
-/*   Updated: 2024/05/22 18:47:30 by pedromar         ###   ########.fr       */
+/*   Created: 2024/05/25 12:12:25 by pedromar          #+#    #+#             */
+/*   Updated: 2024/05/25 12:14:51 by pedromar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PLOTTER_H
-# define PLOTTER_H
+#include "ft_vector.h"
 
-# include	"minirt.h"
+t_vec2		ft_normv2(t_vec2 v)
+{
+	return (ft_divv2f(v, ft_lenv2(v)));
+}
 
-void	ft_put_pixel(t_image *img, int x, int y, int c);
-int		ft_plot_line(t_render *r, t_point p0, t_point p1);
+t_vec3		ft_normv3(t_vec3 v)
+{
+	return (ft_divv3f(v, ft_lenv3(v)));
+}
 
-void	points_axis(t_render *r);
-void	points_box(t_object *obj);
-
-#endif // PLOTTER_H
+t_vec4		ft_normv4(t_vec4 v)
+{
+	return (ft_divv4f(v, ft_lenv4(v)));
+}

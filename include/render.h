@@ -6,7 +6,7 @@
 /*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 15:24:37 by pedromar          #+#    #+#             */
-/*   Updated: 2024/05/20 15:59:53 by pedromar         ###   ########.fr       */
+/*   Updated: 2024/05/26 13:31:47 by pedromar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,14 +80,13 @@ typedef struct s_cam
 
 typedef struct s_render
 {
+	t_camera	*c;
+	t_object	*obj;
 	t_image		*img;
-	t_cam		*cam;
-	t_point		*p;
-	int			n_point;
+/////////////////////////////
 }	t_render;
 
-void	new_camera(t_render *r);
-void	set_transform(t_cam *c);
 void	default_camera(t_render *r);
+void	print_camera(t_camera *cam);
 
 #endif // RENDER_H

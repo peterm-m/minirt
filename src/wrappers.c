@@ -6,7 +6,7 @@
 /*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 18:49:22 by pedromar          #+#    #+#             */
-/*   Updated: 2024/05/20 15:51:36 by pedromar         ###   ########.fr       */
+/*   Updated: 2024/05/26 13:06:23 by pedromar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,11 @@ void	*ft_new_windows(int w, int h, char *name)
 		exit(EXIT_FAILURE);
 	}
 	return (win);
+}
+
+void	ft_put_image_to_window(t_image *img)
+{
+	mlx_put_image_to_window(ft_getmlx(), img->win.win, img->ptr, 0, 0);
 }
 
 void	*mallox(size_t size)

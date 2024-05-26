@@ -6,7 +6,7 @@
 #    By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/13 17:51:17 by pedromar          #+#    #+#              #
-#    Updated: 2024/05/21 12:20:33 by pedromar         ###   ########.fr        #
+#    Updated: 2024/05/26 11:58:47 by pedromar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,8 +34,12 @@ BUILDDIR := .build
 TESTDIR := .test
 LIBDIR := ./lib
 INCDIR := ./include
-SRCDIR := src
 
+SRCDIR := src
+TRANSFORMATIONDIR := transformation
+UTILSDIR := utils
+CONTROLDIR := controls
+OBJECTDIR := object
 # Defines the C Compiler
 CC := gcc
 
@@ -61,6 +65,11 @@ TEST_BINARY := $(BINARY)_test_runner
 
 # %.o file names
 NAMES := $(notdir $(basename $(wildcard $(SRCDIR)/*.c)))
+NAMES += $(notdir $(basename $(wildcard $(TRANSFORMATIONDIR)/*.c)))
+NAMES += $(notdir $(basename $(wildcard $(UTILSDIR)/*.c)))
+NAMES += $(notdir $(basename $(wildcard $(CONTROLDIR)/*.c)))
+NAMES += $(notdir $(basename $(wildcard $(OBJECTDIR)/*.c)))
+
 OBJECTS :=$(patsubst %,$(BUILDDIR)/%.o,$(NAMES))
 
 #
@@ -96,6 +105,23 @@ $(BUILDDIR)/%.o: $(SRCDIR)/%.c
 	@echo -en "$(BROWN)CC $(END_COLOR)";
 	$(CC) -c $^ -o $@ $(DEBUG) $(CFLAGS) $(LIBS)
 
+
+$(BUILDDIR)/%.o: $(TRANSFORMATIONDIR)/%.c
+	@echo -en "$(BROWN)CC $(END_COLOR)";
+	$(CC) -c $^ -o $@ $(DEBUG) $(CFLAGS) $(LIBS)
+
+$(BUILDDIR)/%.o: $(CONTROLDIR)/%.c
+	@echo -en "$(BROWN)CC $(END_COLOR)";
+	$(CC) -c $^ -o $@ $(DEBUG) $(CFLAGS) $(LIBS)
+
+$(BUILDDIR)/%.o: $(OBJECTDIR)/%.c
+	@echo -en "$(BROWN)CC $(END_COLOR)";
+	$(CC) -c $^ -o $@ $(DEBUG) $(CFLAGS) $(LIBS)
+
+$(BUILDDIR)/%.o: $(UTILSDIR)/%.c
+	@echo -en "$(BROWN)CC $(END_COLOR)";
+	$(CC) -c $^ -o $@ $(DEBUG) $(CFLAGS) $(LIBS)
+
 # Rule for run valgrind tool
 valgrind:
 	valgrind \
@@ -116,7 +142,7 @@ profiling:
 # Compile tests and run the test binary
 tests: libs
 	@echo -en "$(BROWN)CC $(END_COLOR)";
-	$(CC) $(TESTDIR)/main.c $(TESTDIR)/munit.c -o $(TESTDIR)/$(TEST_BINARY) $(DEBUG) $(CFLAGS) $(LIBS) $(TEST_LIBS)
+	$(CC) $(TESTDIR)/main.c $(TESTDIR)/munit.c  src/intersections.c -o $(TESTDIR)/$(TEST_BINARY) $(DEBUG) $(CFLAGS) $(LIBS) $(TEST_LIBS)
 	@echo -en "$(BROWN) Running tests: $(END_COLOR)";
 	./$(TESTDIR)/$(TEST_BINARY)
 

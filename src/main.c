@@ -6,7 +6,7 @@
 /*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 17:47:54 by pedromar          #+#    #+#             */
-/*   Updated: 2024/05/20 16:31:36 by pedromar         ###   ########.fr       */
+/*   Updated: 2024/05/26 13:31:53 by pedromar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,12 @@ t_render	*set_render(t_win *win)
 	t_render	*new;
 
 	new = (t_render *)mallox(sizeof(t_render));
+	new->c = camera_new();
 	ft_image(new, win, 1024, 1024);
-	points_box(new);
-	new_camera(new);
-	set_transform(new->cam);
+////////////////////////////////
 	return (new);
 }
+
 
 int main (int argc, char* argv[])
 {
@@ -57,4 +57,3 @@ int main (int argc, char* argv[])
 	mlx_loop(win.mlx);
 	return (EXIT_SUCCESS);
 }
-

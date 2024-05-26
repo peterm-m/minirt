@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   colors.c                                           :+:      :+:    :+:   */
+/*   ray_generation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/20 15:21:35 by pedromar          #+#    #+#             */
-/*   Updated: 2024/05/20 15:51:20 by pedromar         ###   ########.fr       */
+/*   Created: 2024/05/25 18:45:57 by pedromar          #+#    #+#             */
+/*   Updated: 2024/05/25 20:08:35 by pedromar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"minirt.h"
+#include "minirt.h"
 
-unsigned int	set_rgba(t_vec4	c)
+t_ray	create_ray(t_camera *cam, t_vec2i *pix_coor)
 {
-	return ((unsigned int) c.b
-		| (unsigned int) c.g << 8
-		| (unsigned int) c.r << 16);
+	t_ray	r;
+	// TODO
+	(void)cam;	
+	(void)pix_coor;
+	return (r);
 }
 
-t_vec4	get_rgba(float color)
+void	new_direction(t_camera *cam, t_ray *r, t_vec2i *pix_coor)
 {
-	t_vec4	c;
-
-	c.r = (((unsigned int)color >> 16) & 0xFF);
-	c.g = (((unsigned int)color >> 8) & 0xFF);
-	c.b = (((unsigned int)color) & 0xFF);
-	c.a = 0.0f;
-	return (c);
+	return ;// TODO
 }

@@ -21,6 +21,7 @@ SRCS = \
 	mulmv.c\
 	mulv.c\
 	mulvf.c\
+	normv.c\
 	printm.c\
 	printv.c\
 	subm.c\
@@ -43,7 +44,7 @@ CLEANER = rm -rf
 AR := ar
 ARFLAGS  := -r -c -s
 
-CCFLAGS = -Wall -Werror -Wextra 
+CCFLAGS = -Wall -Werror -Wextra -Ofast -march=native
 
 
 all: $(NAME)

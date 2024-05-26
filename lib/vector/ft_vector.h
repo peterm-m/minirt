@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_vector.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pedro <pedro@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 23:49:21 by pedro             #+#    #+#             */
-/*   Updated: 2023/08/12 23:58:42 by pedro            ###   ########.fr       */
+/*   Updated: 2024/05/25 12:12:11 by pedromar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -232,9 +232,9 @@ float		ft_lenv2(t_vec2 v);
 float		ft_lenv3(t_vec3 v);
 float		ft_lenv4(t_vec4 v);
 
-float		ft_normv2(t_vec2 v);
-float		ft_normv3(t_vec3 v);
-float		ft_normv4(t_vec4 v);
+t_vec2		ft_normv2(t_vec2 v);
+t_vec3		ft_normv3(t_vec3 v);
+t_vec4		ft_normv4(t_vec4 v);
 
 t_matrix2	ft_transposem2(t_matrix2 m);
 t_matrix3	ft_transposem3(t_matrix3 m);

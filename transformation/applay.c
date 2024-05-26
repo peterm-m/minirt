@@ -1,35 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   traslation.c                                       :+:      :+:    :+:   */
+/*   applay.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/07 18:38:08 by pedromar          #+#    #+#             */
-/*   Updated: 2024/05/13 20:13:45 by pedromar         ###   ########.fr       */
+/*   Created: 2024/05/25 17:12:48 by pedromar          #+#    #+#             */
+/*   Updated: 2024/05/25 19:37:32 by pedromar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vector.h"
+#include "transformation.h"
 
-t_matrix4	translate(t_vec3 translation)
+void	applay_transformation(t_matrix4 *m, t_vec3 *v, t_vec3 *d)
 {
-	t_matrix4	m;
+	t_vec4	aux;
 
-	m = ft_ident4();
-	m.elements[3][0] = translation.x;
-	m.elements[3][1] = translation.y;
-	m.elements[3][2] = translation.z;
-	return (m);
-}
-
-t_matrix4	inv_translate(t_matrix4 translation_m)
-{
-	t_matrix4	m;
-
-	m = translation_m;
-	m.elements[3][0] = -m.elements[3][0];
-	m.elements[3][1] = -m.elements[3][1];
-	m.elements[3][2] = -m.elements[3][2];
-	return (m);
+	aux = ft_mulm4v(*m, ft_vec4(v->x, v->y, v->z, 1.0f));
+	d->x = aux.x / aux.w;
+	d->y = aux.y / aux.w;
+	d->z = aux.z / aux.w;
 }

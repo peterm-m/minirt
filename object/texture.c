@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   plotter.h                                          :+:      :+:    :+:   */
+/*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/11 18:37:29 by pedromar          #+#    #+#             */
-/*   Updated: 2024/05/22 18:47:30 by pedromar         ###   ########.fr       */
+/*   Created: 2024/05/25 14:05:23 by pedromar          #+#    #+#             */
+/*   Updated: 2024/05/25 20:03:46 by pedromar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PLOTTER_H
-# define PLOTTER_H
+#include "minirt.h"
 
-# include	"minirt.h"
+t_vec2	texture_sp(t_vec3 *p, t_sp *sp)
+{
+	t_vec2	t;
 
-void	ft_put_pixel(t_image *img, int x, int y, int c);
-int		ft_plot_line(t_render *r, t_point p0, t_point p1);
+	t.x = (1.0f + atan2(p->z, p->x) / M_PI) * 0.5f;
+	t.y = acosf(p->y) / M_PI;
+	return (t);
+}
 
-void	points_axis(t_render *r);
-void	points_box(t_object *obj);
-
-#endif // PLOTTER_H
+// TODO

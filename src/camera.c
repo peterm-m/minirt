@@ -5,51 +5,84 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/15 17:51:21 by pedromar          #+#    #+#             */
-/*   Updated: 2024/05/20 15:51:24 by pedromar         ###   ########.fr       */
+/*   Created: 2024/05/22 18:01:50 by pedromar          #+#    #+#             */
+/*   Updated: 2024/05/26 18:29:26 by pedromar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"minirt.h"
+#include "minirt.h"
 
-void	set_transform(t_cam *c)
+t_camera	*camera_new(void)
 {
-	c->model = translate(c->pos_model);
-	c->model = ft_mulm4m(rotater(c->rot_model.x, ft_vec3(1.0f, 0.0f, 0.0f)), c->model);
-	c->model = ft_mulm4m(rotater(c->rot_model.y, ft_vec3(0.0f, 1.0f, 0.0f)), c->model);
-	c->model = ft_mulm4m(rotater(c->rot_model.z, ft_vec3(0.0f, 0.0f, 1.0f)), c->model);
-	c->view = rotater(c->rot_view.z, ft_vec3(0.1f, 0.0f, 0.0f));
-	c->view = ft_mulm4m(rotater(-c->rot_view.y, ft_vec3(0.0f, 1.0f, 0.0f)), c->view);
-	c->view = ft_mulm4m(rotater(c->rot_view.x, ft_vec3(0.0f, 0.0f, 1.0f)), c->view);
-	c->view = ft_mulm4m(translate(c->pos_view), c->view);
-	if (c->proj_type == PROJ_TYPE_ORTHO)
-		c->proj = orthographicr(c->proj_max, c->proj_min);
-	else if (c->proj_type == PROJ_TYPE_PROJ)
-		perspectiver(1, 1, 1, 1);
-	c->trasform = ft_mulm4m(c->model, c->view);
-	c->trasform = ft_mulm4m(c->proj, c->trasform);
-	c->trasform = ft_mulm4m(c->trasform, scale(c->scale));
-	c->trasform = ft_mulm4m(c->trasform, translate(ft_vec3( 1024 / 2,  1024 / 2, 0)));
+	t_camera	*cam;
+
+	cam = mallox(sizeof(t_camera));
+	cam->pos_cam = ft_vec3(0.0f, 0.0f, 0.0f);
+	cam->rot_cam = ft_vec3(0.0f, 0.0f, 0.0f);
+	cam->scale_cam = ft_vec3(1.0f, 1.0f, 1.0f);
+	cam->img_size[IMG_SIZE_X] = DEFAULT_IMGSIZE_X;
+	cam->img_size[IMG_SIZE_Y] = DEFAULT_IMGSIZE_Y;
+	cam->clipping[CLIP_NEAR] = DEFAULT_CLIPPING_NEAR;
+	cam->clipping[CLIP_FAR] = DEFAULT_CLIPPING_FAR;
+	cam->aperture[APERTURE_WIDTH] = DEFAULT_APERTURE_WIDTH;
+	cam->aperture[APERTURE_HEIGHT] = DEFAULT_APERTURE_HEIGHT;
+	cam->focal = 0.0f;
+	return (cam);
 }
 
-
-void	default_camera(t_render *r)
+void	camera_destroy(t_camera *cam)
 {
-	r->cam->proj_type = PROJ_TYPE_ORTHO;
-	r->cam->scale = ft_vec3(1024 / 4, 1024 / 4, 1.0f);
-	r->cam->pos_view = ft_vec3(0.0f, 0.0f, 0.0f);
-	r->cam->rot_view = ft_vec3(0.0f, 0.0f, 0.0f);
-	r->cam->pos_model = ft_vec3(0.0f, 0.0f, 0.0f);
-	r->cam->rot_model = ft_vec3(0.0f, 0.0f, 0.0f);
-	r->cam->proj_max = ft_vec3(1.0f, 1.0f, 1.0f);
-	r->cam->proj_min = ft_vec3(-1.0, -1.0, -1.0f);
+	free(cam);
 }
 
-void	new_camera(t_render *r)
+void	update_camera(t_camera *cam)
 {
-	r->cam = (t_cam *) mallox(sizeof(t_cam));
-	if (!r->cam)
-		exit(EXIT_FAILURE);
-	default_camera(r);
-	set_transform(r->cam);
+	cam->camera_world = get_invtransform(cam->pos_cam, cam->rot_cam, cam->scale_cam);
+	cam->world_camera = get_transform(cam->pos_cam, cam->rot_cam, cam->scale_cam);
+	cam->canvas_windows.elements[CANVAS_TOP] = \
+		((cam->aperture[APERTURE_HEIGHT] / 2.0f) \
+		/ cam->focal) * cam->clipping[CLIP_NEAR];
+	cam->canvas_windows.elements[CANVAS_RIGHT] = \
+		((cam->aperture[APERTURE_WIDTH] / 2.0f) \
+		/ cam->focal) * cam->clipping[CLIP_NEAR];
+	cam->canvas_windows.elements[CANVAS_BOTTOM] = \
+		- cam->canvas_windows.elements[CANVAS_TOP];
+	cam->canvas_windows.elements[CANVAS_LEFT] = \
+	- cam->canvas_windows.elements[CANVAS_RIGHT];
+}
+
+bool	pixel_coordenate(t_camera *cam, t_vec4 v_world, t_vec2i *pix_coor)
+{
+	t_vec4	v_cam;
+	t_vec2	v_screen;
+	t_vec2	v_ndc;
+
+	applay_transformation(&cam->camera_world, &v_world, &v_cam);
+	v_screen.x = v_cam.x / -v_cam.z * cam->clipping[CLIP_NEAR];
+	v_screen.y = v_cam.y / -v_cam.z * cam->clipping[CLIP_NEAR];
+    v_ndc.x = (v_screen.x + cam->canvas_windows.elements[CANVAS_RIGHT]) \
+		/ (2 * cam->canvas_windows.elements[CANVAS_RIGHT]);
+    v_ndc.y = (v_screen.y + cam->canvas_windows.elements[CANVAS_TOP]) \
+		/ (2 * cam->canvas_windows.elements[CANVAS_TOP]);
+	pix_coor->x = (int)(v_ndc.x * cam->img_size[IMG_SIZE_X]);
+    pix_coor->y = (int)((1.0f - v_ndc.y) * cam->img_size[IMG_SIZE_Y]);
+	return (v_screen.x < cam->canvas_windows.elements[CANVAS_LEFT] \
+		|| v_screen.x > cam->canvas_windows.elements[CANVAS_RIGHT] \
+		|| v_screen.y < cam->canvas_windows.elements[CANVAS_BOTTOM] \
+		|| v_screen.y > cam->canvas_windows.elements[CANVAS_TOP]);
+}
+
+void	reset_camera(t_camera *cam)
+{
+	cam->pos_cam = ft_vec3(0.0f, 0.0f, 0.0f);
+	cam->rot_cam = ft_vec3(0.0f, 0.0f, 0.0f);
+	cam->scale_cam = ft_vec3(1.0f, 1.0f, 1.0f);
+	cam->img_size[IMG_SIZE_X] = DEFAULT_IMGSIZE_X;
+	cam->img_size[IMG_SIZE_Y] = DEFAULT_IMGSIZE_Y;
+	cam->clipping[CLIP_NEAR] = DEFAULT_CLIPPING_NEAR;
+	cam->clipping[CLIP_FAR] = DEFAULT_CLIPPING_FAR;
+	cam->aperture[APERTURE_WIDTH] = DEFAULT_APERTURE_WIDTH;
+	cam->aperture[APERTURE_HEIGHT] = DEFAULT_APERTURE_HEIGHT;
+	cam->focal = 0.0f;
+	update_camera(cam);
 }

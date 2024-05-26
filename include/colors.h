@@ -6,7 +6,7 @@
 /*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 17:48:06 by pedromar          #+#    #+#             */
-/*   Updated: 2024/05/20 15:21:23 by pedromar         ###   ########.fr       */
+/*   Updated: 2024/05/26 13:50:35 by pedromar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@
 # define CYAN        "\x1b[36m"
 # define GRAY        "\x1b[37m"
 
-unsigned int	set_rgba(t_vec4	c);
-t_vec4			get_rgba(float color);
+# define RGB_RANGE_MAX 255
+# define RGB_RANGE_MIN 0
+
+int		set_rgba(t_vec4	c);
+t_vec4	get_rgba(float color);
 
 #endif // COLORS_H
