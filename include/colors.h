@@ -6,7 +6,7 @@
 /*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 17:48:06 by pedromar          #+#    #+#             */
-/*   Updated: 2024/05/26 13:50:35 by pedromar         ###   ########.fr       */
+/*   Updated: 2024/05/27 12:33:56 by pedromar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 # define COLORS_H
 
 # include "ft_vector.h"
+
+/*
+	log colors
+*/
 
 # define NO_COLOR    "\x1b[0m"
 # define RED         "\x1b[31m"

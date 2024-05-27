@@ -6,7 +6,7 @@
 /*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 18:15:13 by pedromar          #+#    #+#             */
-/*   Updated: 2024/05/20 15:44:25 by pedromar         ###   ########.fr       */
+/*   Updated: 2024/05/27 11:52:42 by pedromar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ t_matrix4	lookatl(t_vec3 target, t_vec3 updir, t_vec3 eye)
 	return (m);
 }
 
-t_matrix4	invlookat(t_matrix4 lookat_m)
+t_matrix4	inv_lookat(t_matrix4 lookat_m)
 {
 	t_matrix4	m;
 	t_matrix3	rot;

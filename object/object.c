@@ -6,7 +6,7 @@
 /*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 14:19:20 by pedromar          #+#    #+#             */
-/*   Updated: 2024/05/25 20:04:19 by pedromar         ###   ########.fr       */
+/*   Updated: 2024/05/27 16:27:28 by pedromar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	object_destroy(t_object *obj)
 
 void	update_object(t_object *obj)
 {
-	obj->local_world = get_invtransform(obj->pos_obj, obj->rot_obj, obj->scale_obj);
-	obj->world_local = get_transform(obj->pos_obj, obj->rot_obj, obj->scale_obj);
+	obj->local_world = get_invtransform(obj->pos_obj, \
+		obj->rot_obj, obj->scale_obj);
+	obj->world_local = get_transform(obj->pos_obj, \
+		obj->rot_obj, obj->scale_obj);
 }

@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   wrappers.h                                         :+:      :+:    :+:   */
+/*   light.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/20 15:18:49 by pedromar          #+#    #+#             */
-/*   Updated: 2024/05/27 16:57:06 by pedromar         ###   ########.fr       */
+/*   Created: 2024/05/27 16:55:03 by pedromar          #+#    #+#             */
+/*   Updated: 2024/05/27 17:03:41 by pedromar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WRAPPERS_H
-# define WRAPPERS_H
+#ifndef LIGHT_H
+# define LIGHT_H
 
-# include "mlx.h"
-# include "mlx_int.h"
-# include <stdlib.h>
+# include "ft_vector.h"
 
-void	*ft_getmlx(void);
-void	*ft_new_image(int w, int h);
-void	*ft_new_windows(int w, int h, char *name);
-void	ft_put_image_to_window(t_image *img);
-void	*mallox(size_t size);
+typedef struct s_light
+{
+	t_vec3	pos;
+	t_vec4	color;
+}	t_light;
 
-#endif // WRAPPERS_H
+#endif // LIGHT_H

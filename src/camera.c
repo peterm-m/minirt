@@ -6,7 +6,7 @@
 /*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 18:01:50 by pedromar          #+#    #+#             */
-/*   Updated: 2024/05/26 18:29:26 by pedromar         ###   ########.fr       */
+/*   Updated: 2024/05/27 16:30:55 by pedromar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,10 @@ void	camera_destroy(t_camera *cam)
 
 void	update_camera(t_camera *cam)
 {
-	cam->camera_world = get_invtransform(cam->pos_cam, cam->rot_cam, cam->scale_cam);
-	cam->world_camera = get_transform(cam->pos_cam, cam->rot_cam, cam->scale_cam);
+	cam->camera_world = get_invtransform(cam->pos_cam, \
+		cam->rot_cam, cam->scale_cam);
+	cam->world_camera = get_transform(cam->pos_cam, \
+		cam->rot_cam, cam->scale_cam);
 	cam->canvas_windows.elements[CANVAS_TOP] = \
 		((cam->aperture[APERTURE_HEIGHT] / 2.0f) \
 		/ cam->focal) * cam->clipping[CLIP_NEAR];
@@ -60,12 +62,12 @@ bool	pixel_coordenate(t_camera *cam, t_vec4 v_world, t_vec2i *pix_coor)
 	applay_transformation(&cam->camera_world, &v_world, &v_cam);
 	v_screen.x = v_cam.x / -v_cam.z * cam->clipping[CLIP_NEAR];
 	v_screen.y = v_cam.y / -v_cam.z * cam->clipping[CLIP_NEAR];
-    v_ndc.x = (v_screen.x + cam->canvas_windows.elements[CANVAS_RIGHT]) \
-		/ (2 * cam->canvas_windows.elements[CANVAS_RIGHT]);
-    v_ndc.y = (v_screen.y + cam->canvas_windows.elements[CANVAS_TOP]) \
-		/ (2 * cam->canvas_windows.elements[CANVAS_TOP]);
+	v_ndc.x = (v_screen.x + cam->canvas_windows.elements[CANVAS_RIGHT]) \
+			/ (2 * cam->canvas_windows.elements[CANVAS_RIGHT]);
+	v_ndc.y = (v_screen.y + cam->canvas_windows.elements[CANVAS_TOP]) \
+			/ (2 * cam->canvas_windows.elements[CANVAS_TOP]);
 	pix_coor->x = (int)(v_ndc.x * cam->img_size[IMG_SIZE_X]);
-    pix_coor->y = (int)((1.0f - v_ndc.y) * cam->img_size[IMG_SIZE_Y]);
+	pix_coor->y = (int)((1.0f - v_ndc.y) * cam->img_size[IMG_SIZE_Y]);
 	return (v_screen.x < cam->canvas_windows.elements[CANVAS_LEFT] \
 		|| v_screen.x > cam->canvas_windows.elements[CANVAS_RIGHT] \
 		|| v_screen.y < cam->canvas_windows.elements[CANVAS_BOTTOM] \

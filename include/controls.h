@@ -6,7 +6,7 @@
 /*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 15:18:43 by pedromar          #+#    #+#             */
-/*   Updated: 2024/05/20 15:47:02 by pedromar         ###   ########.fr       */
+/*   Updated: 2024/05/27 12:38:21 by pedromar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ void	view_manager(int key, t_render *r);
 void	model_manger(int key, t_render *r);
 void	projection_manager(int key, t_render *r);
 void	key_scale(void );
-
 
 typedef struct s_control
 {

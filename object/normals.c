@@ -6,7 +6,7 @@
 /*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 14:04:05 by pedromar          #+#    #+#             */
-/*   Updated: 2024/05/26 18:27:43 by pedromar         ###   ########.fr       */
+/*   Updated: 2024/05/27 16:26:24 by pedromar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,19 @@ t_vec3	normal_pl(t_vec3 *p, t_pl *pl)
 
 t_vec3	normal_cy(t_vec3 *p, t_cy *cy)
 {
-	(void)p;
-	(void)cy;
-	return (ft_vec3(0.0f, 0.0f, 0.0f));
-//	t_vec3  v;
-//
-//	v = ft_subv3(*p ,cy->center);
-//	return (ft_divv3f(ft_subv3(v, ft_mulv3f(cy->normal, \
-//			ft_dotv3(cy->center, v))), cy->radius));
+	t_vec3	v;
+	float	l;
+
+	v = ft_subv3(*p, cy->center);
+	l = ft_dotv3(v, cy->normal);
+	if (l >= cy->height || l <= 0.0f)
+		return (ft_mulv3f(cy->normal, ((l >= cy->height) - (l <= 0.0f))));
+	return (ft_normv3(ft_subv3(v, ft_mulv3f(cy->normal, l))));
 }
 
+// TODO
 t_vec3	normal_bx(t_vec3 *p, t_bx *bx)
-{// TODO
+{
 	(void)p;
 	(void)bx;
 	return (ft_vec3(0.0f, 0.0f, 0.0f));

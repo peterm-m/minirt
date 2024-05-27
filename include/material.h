@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   material.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pedromar <pedromar@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 13:00:10 by pedromar          #+#    #+#             */
-/*   Updated: 2024/05/20 13:16:12 by pedromar         ###   ########.fr       */
+/*   Updated: 2024/05/27 16:56:40 by pedromar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,9 @@
 
 # include "ft_vector.h"
 
-typedef struct	s_material
+typedef struct s_material
 {
-	float	reflectivity;
-	float	transmissivity;
-	t_vec3	surface_color;
-	t_vec3	emission_color;
-} t_material;
-
+	t_vec4	color;
+}	t_material;
 
 #endif /* MATERIAL_H*/
-

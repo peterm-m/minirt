@@ -6,7 +6,7 @@
 /*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 19:58:27 by pedromar          #+#    #+#             */
-/*   Updated: 2024/05/25 20:25:52 by pedromar         ###   ########.fr       */
+/*   Updated: 2024/05/27 12:03:24 by pedromar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,14 @@
 # include "camera.h"
 # include "ft_vector.h"
 
-typedef struct	s_ray
+typedef struct s_hit
+{
+	t_vec3	p;
+	t_vec3	nornal;
+	t_vec2	tex;
+}	t_hit;
+
+typedef struct s_ray
 {
 	t_vec3	d;
 	t_vec3	o;

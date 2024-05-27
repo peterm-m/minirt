@@ -6,7 +6,7 @@
 /*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 21:24:17 by pedromar          #+#    #+#             */
-/*   Updated: 2024/05/26 13:36:41 by pedromar         ###   ########.fr       */
+/*   Updated: 2024/05/27 16:05:48 by pedromar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	key_manager(int key, t_render *r)
 {
 	mlx_destroy_image((r->img->win).mlx, r->img->ptr);
-	r->img->ptr = mlx_new_image((r->img->win).mlx, r->img->w,
+		r->img->ptr = mlx_new_image((r->img->win).mlx, r->img->w,
 			r->img->h);
 	if (!r->img->ptr)
 		exit(EXIT_FAILURE);

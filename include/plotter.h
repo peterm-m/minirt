@@ -6,7 +6,7 @@
 /*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 18:37:29 by pedromar          #+#    #+#             */
-/*   Updated: 2024/05/22 18:47:30 by pedromar         ###   ########.fr       */
+/*   Updated: 2024/05/27 12:38:10 by pedromar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,5 @@
 # include	"minirt.h"
 
 void	ft_put_pixel(t_image *img, int x, int y, int c);
-int		ft_plot_line(t_render *r, t_point p0, t_point p1);
-
-void	points_axis(t_render *r);
-void	points_box(t_object *obj);
 
 #endif // PLOTTER_H

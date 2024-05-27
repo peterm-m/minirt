@@ -5,13 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/24 18:43:14 by pedromar          #+#    #+#             */
-/*   Updated: 2024/05/25 19:36:52 by pedromar         ###   ########.fr       */
+/*   Created: 2024/05/27 16:58:35 by pedromar          #+#    #+#             */
+/*   Updated: 2024/05/27 16:59:23 by pedromar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TRASFORMATIONS_H
-# define TRASFORMATIONS_H
+#ifndef TRANSFORMATION_H
+# define TRANSFORMATION_H
 
 # include "ft_vector.h"
 
@@ -42,4 +42,4 @@ t_matrix4	invperspectiver(t_matrix4 pers_m);
 t_matrix4	perspectivel(float fov, float aspect, float near, float far);
 t_matrix4	invperspectivel(t_matrix4 pers_m);
 
-#endif // TRASFORMATIONS_H
+#endif // TRANSFORMATION_H

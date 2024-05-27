@@ -6,7 +6,7 @@
 /*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 16:32:15 by pedromar          #+#    #+#             */
-/*   Updated: 2024/05/26 18:28:16 by pedromar         ###   ########.fr       */
+/*   Updated: 2024/05/27 16:40:25 by pedromar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 int	rgb_color(t_cy *cy, t_ray *ray)
 {
 	t_vec3 v = ft_addv3(ray->o, ft_mulv3f(ray->d, ray->t));
-	float	intensity = 1.0f;// - ft_dotv3(normal_cy(&v, cy), ray->d);
+	float	intensity = 1.0f - ft_dotv3(normal_cy(&v, cy), ray->d);
 	return (set_rgba(ft_vec4(intensity, intensity, intensity, 0.0f)));
 }
 
@@ -25,12 +25,14 @@ t_ray	gen_ray(t_render *r, t_vec2i *p)
 	t_ray	ray;
 	float	screen_x;
 	float	screen_y;
-	
+
 	screen_x = 2.0f * ((p->x + 0.5f) / r->img->w) - 1.0f;
 	screen_y = 1.0f - 2.0f * ((p->y + 0.5f) / r->img->h);
-	ray.d = ft_vec3(screen_x ,screen_y, -1.0f);
+	t_vec3	aux = ft_vec3(0.0f, 0.0f, 0.0f);
+	applay_transformation(&r->c->world_camera, &aux, &ray.o);
+	aux = ft_vec3(screen_x ,screen_y, -1.0f);
+	applay_transformation(&r->c->world_camera, &aux, &ray.d);
 	ray.d = ft_divv3f(ray.d, ft_lenv3(ray.d));
-	ray.o = r->c->pos_cam;
 	return (ray);
 }
 
@@ -47,7 +49,7 @@ static int	rt_trace(t_cy *cy, t_render *r, t_vec2i *p)
 int	plot_loop(t_render *r)
 {
 	t_cy	cy;
-	t_vec2i p;
+	t_vec2i	p;
 
 	cy.center = ft_vec3(0.0f, 0.0f, -2.0f);
 	cy.radius = 0.5f;
@@ -61,5 +63,5 @@ int	plot_loop(t_render *r)
 			rt_trace(&cy, r, &p);
 	}
 	ft_put_image_to_window(r->img);
-	return (EXIT_SUCCESS);
+	exit(EXIT_SUCCESS);
 }

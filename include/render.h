@@ -6,24 +6,24 @@
 /*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 15:24:37 by pedromar          #+#    #+#             */
-/*   Updated: 2024/05/26 13:31:47 by pedromar         ###   ########.fr       */
+/*   Updated: 2024/05/27 16:58:14 by pedromar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RENDER_H
 # define RENDER_H
 
-# include	"ft_vector.h"
-# include	"geometric.h"
-# include	"minirt.h"
+# include "ft_vector.h"
+# include "geometric.h"
+# include "minirt.h"
 
-# define	DEFAULT_WIN_SX		1024
-# define	DEFAULT_WIN_SY		1024
+# define DEFAULT_WIN_SX 1024
+# define DEFAULT_WIN_SY 1024
 
-# define	DEFAULT_image_SX		42
-# define	DEFAULT_image_SY		42
+# define DEFAULT_IMAGE_SX 42
+# define DEFAULT_IMAGE_SY 42
 
-# define PROJ_TYPE_ORTHO	1
+# define PROJ_TYPE_ORTHO 1
 
 typedef struct s_win
 {
@@ -45,7 +45,7 @@ typedef struct s_image
 	int		h;
 }	t_image;
 
-typedef struct	s_mlx
+typedef struct s_mlx
 {
 	void	*mlx;
 	void	*win;
@@ -83,7 +83,6 @@ typedef struct s_render
 	t_camera	*c;
 	t_object	*obj;
 	t_image		*img;
-/////////////////////////////
 }	t_render;
 
 void	default_camera(t_render *r);

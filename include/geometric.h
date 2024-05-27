@@ -6,13 +6,12 @@
 /*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 14:43:41 by pedromar          #+#    #+#             */
-/*   Updated: 2024/05/26 18:12:36 by pedromar         ###   ########.fr       */
+/*   Updated: 2024/05/27 16:56:49 by pedromar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GEOMETRIC_H
 # define GEOMETRIC_H
-
 
 # include "minirt.h"
 # include <sys/param.h>
