@@ -6,7 +6,7 @@
 /*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 19:58:27 by pedromar          #+#    #+#             */
-/*   Updated: 2024/05/27 12:03:24 by pedromar         ###   ########.fr       */
+/*   Updated: 2024/05/28 14:13:37 by pedromar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ typedef struct s_ray
 	t_vec3	d;
 	t_vec3	o;
 	float	t;
-	float	t_min;
-	float	t_max;
 }	t_ray;
 
 /*
@@ -43,5 +41,11 @@ t_ray	create_ray(t_camera *cam, t_vec2i *pix_coor);
 */
 
 void	new_direction(t_camera *cam, t_ray *r, t_vec2i *pix_coor);
+
+/*
+ * return point = r->d * t + r->o
+*/
+
+t_vec3	point_at(float t, t_ray *r);
 
 #endif  // RAY_H

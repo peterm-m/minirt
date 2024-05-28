@@ -6,17 +6,19 @@
 /*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 14:19:20 by pedromar          #+#    #+#             */
-/*   Updated: 2024/05/27 16:27:28 by pedromar         ###   ########.fr       */
+/*   Updated: 2024/05/28 16:30:39 by pedromar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_object	*object_new(t_shape_type type)
+t_object	*object_new(t_shape_type type, t_shape shape)
 {
 	t_object	*obj;
 
 	obj = mallox(sizeof(t_object));
+	obj->type = type;
+	obj->shape = shape;
 	obj->pos_obj = ft_vec3(0.0f, 0.0f, 0.0f);
 	obj->rot_obj = ft_vec3(0.0f, 0.0f, 0.0f);
 	obj->scale_obj = ft_vec3(1.0f, 1.0f, 1.0f);
@@ -26,6 +28,7 @@ t_object	*object_new(t_shape_type type)
 
 void	object_destroy(t_object *obj)
 {
+	delete_shape(obj->type, obj->shape);
 	free(obj);
 }
 

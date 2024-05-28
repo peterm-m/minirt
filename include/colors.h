@@ -6,7 +6,7 @@
 /*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 17:48:06 by pedromar          #+#    #+#             */
-/*   Updated: 2024/05/27 12:33:56 by pedromar         ###   ########.fr       */
+/*   Updated: 2024/05/28 16:03:22 by pedromar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 # define COLORS_H
 
 # include "ft_vector.h"
+
+typedef t_vec3	t_xyz;
+typedef t_vec3	t_rgb;
+typedef t_vec4	t_argb;
 
 /*
 	log colors
@@ -33,5 +37,14 @@
 
 int		set_rgba(t_vec4	c);
 t_vec4	get_rgba(float color);
+
+# define BINS_SPECTRUM 82
+
+typedef struct s
+{
+	float	s[BINS_SPECTRUM];
+}	t_spectrum;
+
+void	spectrum_xyz(t_spectrum *s, t_xyz *c);
 
 #endif // COLORS_H

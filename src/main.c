@@ -6,7 +6,7 @@
 /*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 17:47:54 by pedromar          #+#    #+#             */
-/*   Updated: 2024/05/27 17:05:45 by pedromar         ###   ########.fr       */
+/*   Updated: 2024/05/28 16:07:30 by pedromar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ t_render	*set_render(t_win *win)
 
 	new = (t_render *)mallox(sizeof(t_render));
 	new->c = camera_new();
+	new->obj = ;
 	ft_image(new, win, 1024, 1024);
 	return (new);
 }

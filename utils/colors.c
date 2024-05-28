@@ -6,11 +6,13 @@
 /*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 15:21:35 by pedromar          #+#    #+#             */
-/*   Updated: 2024/05/27 16:28:55 by pedromar         ###   ########.fr       */
+/*   Updated: 2024/05/28 16:03:26 by pedromar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"minirt.h"
+
+// https://www.fourmilab.ch/documents/specrend/specrend.c
 
 int	set_rgba(t_vec4 c)
 {

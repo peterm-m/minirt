@@ -6,7 +6,7 @@
 /*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 12:04:37 by pedromar          #+#    #+#             */
-/*   Updated: 2024/05/27 17:01:50 by pedromar         ###   ########.fr       */
+/*   Updated: 2024/05/28 16:28:32 by pedromar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@ typedef union u_shape
 	struct s_pl	*pl;
 	struct s_cy	*cy;
 }	t_shape;
+
+t_shape	new_shape(t_shape_type type);
+void	delete_shape(t_shape_type type, t_shape sh);
 
 /*
 	SPHERE

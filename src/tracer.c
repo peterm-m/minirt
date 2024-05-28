@@ -6,7 +6,7 @@
 /*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 16:32:15 by pedromar          #+#    #+#             */
-/*   Updated: 2024/05/27 16:40:25 by pedromar         ###   ########.fr       */
+/*   Updated: 2024/05/28 12:23:03 by pedromar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,5 @@ int	plot_loop(t_render *r)
 			rt_trace(&cy, r, &p);
 	}
 	ft_put_image_to_window(r->img);
-	exit(EXIT_SUCCESS);
+	return (EXIT_SUCCESS);
 }
