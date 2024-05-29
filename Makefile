@@ -45,7 +45,7 @@ GNLDIR := get_next_line
 # Defines the C Compiler
 CC := gcc
 
-WARNS := -Wall -Wextra -fsanitize=undefined -fsanitize=address # -Werror
+WARNS := -Wall -Wextra -fsanitize=undefined -fsanitize=address # -Werror -pedantic
 
 # Flags for compiling
 CFLAGS := $(WARNS) # -O3
