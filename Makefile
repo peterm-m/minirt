@@ -40,6 +40,8 @@ TRANSFORMATIONDIR := transformation
 UTILSDIR := utils
 CONTROLDIR := controls
 OBJECTDIR := object
+PARSERDIR := parser
+GNLDIR := get_next_line
 # Defines the C Compiler
 CC := gcc
 
@@ -69,6 +71,8 @@ NAMES += $(notdir $(basename $(wildcard $(TRANSFORMATIONDIR)/*.c)))
 NAMES += $(notdir $(basename $(wildcard $(UTILSDIR)/*.c)))
 NAMES += $(notdir $(basename $(wildcard $(CONTROLDIR)/*.c)))
 NAMES += $(notdir $(basename $(wildcard $(OBJECTDIR)/*.c)))
+NAMES += $(notdir $(basename $(wildcard $(PARSERDIR)/*.c)))
+NAMES += $(notdir $(basename $(wildcard $(GNLDIR)/*.c)))
 
 OBJECTS :=$(patsubst %,$(BUILDDIR)/%.o,$(NAMES))
 
@@ -105,7 +109,6 @@ $(BUILDDIR)/%.o: $(SRCDIR)/%.c
 	@echo -en "$(BROWN)CC $(END_COLOR)";
 	$(CC) -c $^ -o $@ $(DEBUG) $(CFLAGS) $(LIBS)
 
-
 $(BUILDDIR)/%.o: $(TRANSFORMATIONDIR)/%.c
 	@echo -en "$(BROWN)CC $(END_COLOR)";
 	$(CC) -c $^ -o $@ $(DEBUG) $(CFLAGS) $(LIBS)
@@ -119,6 +122,14 @@ $(BUILDDIR)/%.o: $(OBJECTDIR)/%.c
 	$(CC) -c $^ -o $@ $(DEBUG) $(CFLAGS) $(LIBS)
 
 $(BUILDDIR)/%.o: $(UTILSDIR)/%.c
+	@echo -en "$(BROWN)CC $(END_COLOR)";
+	$(CC) -c $^ -o $@ $(DEBUG) $(CFLAGS) $(LIBS)
+
+$(BUILDDIR)/%.o: $(PARSERDIR)/%.c
+	@echo -en "$(BROWN)CC $(END_COLOR)";
+	$(CC) -c $^ -o $@ $(DEBUG) $(CFLAGS) $(LIBS)
+
+$(BUILDDIR)/%.o: $(GNLDIR)/%.c
 	@echo -en "$(BROWN)CC $(END_COLOR)";
 	$(CC) -c $^ -o $@ $(DEBUG) $(CFLAGS) $(LIBS)
 

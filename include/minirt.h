@@ -15,7 +15,7 @@
 
 # include <stdbool.h>
 # include <stdlib.h>
-# include <stdio.h>
+# include <stdio.h>//
 
 # include "ft_vector.h"
 
@@ -30,6 +30,7 @@
 # include "controls.h"
 # include "transformation.h"
 # include "wrappers.h"
+# include "get_next_line.h"
 
 # include "plotter.h"
 
@@ -42,8 +43,10 @@ typedef struct s_scene
 	t_object	*objs;
 	t_camera	*cams;
 	t_light		*lights;
-};
+}				t_scene;
 
+int		ft_parser(t_scene *scene, int argc, char **argv);
+//
 void	*mallox(size_t size);
 int		render_loop(t_render *r);
 int		ft_plot_points(t_render *r);

@@ -44,12 +44,10 @@ t_render	*set_render(t_win *win)
 
 int main (int argc, char* argv[])
 {
-#ifdef DEBUG
-	/* Debug */
-#endif
-	(void)argc;
-	(void)argv;
+	t_scene scene;
 
+	if (ft_parser(&scene, argc, argv))
+		return (EXIT_FAILURE);
 	printf("MINIRT %s %s\n", __DATE__, __TIME__);
 	t_win	win =  ft_program(1024, 1024, "minirt");
 	t_render *r = set_render(&win);
