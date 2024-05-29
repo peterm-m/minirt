@@ -6,7 +6,7 @@
 /*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 17:48:06 by pedromar          #+#    #+#             */
-/*   Updated: 2024/05/29 13:28:57 by pedromar         ###   ########.fr       */
+/*   Updated: 2024/05/29 16:45:43 by pedromar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_vec4	get_rgba(float color);
 
 # define BINS_SPECTRUM 82
 
-typedef struct s
+typedef struct s_spectrum
 {
 	float	s[BINS_SPECTRUM];
 }	t_spectrum;

@@ -6,7 +6,7 @@
 /*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 17:45:23 by pedromar          #+#    #+#             */
-/*   Updated: 2024/05/29 15:26:42 by pedromar         ###   ########.fr       */
+/*   Updated: 2024/05/29 16:45:44 by pedromar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include "object.h"
 # include "camera.h"
 # include "render.h"
+# include "light.h"
 # include "ray.h"
 # include "controls.h"
 # include "transformation.h"
@@ -35,6 +36,13 @@
 # ifndef M_PI
 #  define M_PI   3.14159265358979323846264338327950288
 # endif
+
+typedef struct s_scene
+{
+	t_object	*objs;
+	t_camera	*cams;
+	t_light		*lights;
+};
 
 void	*mallox(size_t size);
 int		render_loop(t_render *r);
