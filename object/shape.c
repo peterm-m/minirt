@@ -6,11 +6,11 @@
 /*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 16:20:57 by pedromar          #+#    #+#             */
-/*   Updated: 2024/05/28 16:29:11 by pedromar         ###   ########.fr       */
+/*   Updated: 2024/05/29 13:05:19 by pedromar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shape.h"
+#include "minirt.h"
 
 t_shape	new_shape(t_shape_type type)
 {

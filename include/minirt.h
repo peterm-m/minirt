@@ -6,7 +6,7 @@
 /*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 17:45:23 by pedromar          #+#    #+#             */
-/*   Updated: 2024/05/27 16:56:34 by pedromar         ###   ########.fr       */
+/*   Updated: 2024/05/29 15:26:42 by pedromar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 
 # include "colors.h"
 # include "geometric.h"
+# include "shape.h"
 # include "object.h"
 # include "camera.h"
 # include "render.h"
@@ -36,7 +37,7 @@
 # endif
 
 void	*mallox(size_t size);
-int		plot_loop(t_render *r);
+int		render_loop(t_render *r);
 int		ft_plot_points(t_render *r);
 //
 int		raster_loop(t_render *r);

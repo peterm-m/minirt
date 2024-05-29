@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tracer.c                                           :+:      :+:    :+:   */
+/*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 16:32:15 by pedromar          #+#    #+#             */
-/*   Updated: 2024/05/28 12:23:03 by pedromar         ###   ########.fr       */
+/*   Updated: 2024/05/29 13:39:56 by pedromar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static int	rt_trace(t_cy *cy, t_render *r, t_vec2i *p)
 	return (EXIT_SUCCESS);
 }
 
-int	plot_loop(t_render *r)
+int	render_loop(t_render *r)
 {
 	t_cy	cy;
 	t_vec2i	p;

@@ -6,7 +6,7 @@
 /*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 12:04:37 by pedromar          #+#    #+#             */
-/*   Updated: 2024/05/28 16:28:32 by pedromar         ###   ########.fr       */
+/*   Updated: 2024/05/29 13:32:22 by pedromar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ typedef struct s_sp
 {
 	t_vec3		center;
 	float		radius;
-	t_material	material;
 }	t_sp;
 // CHECK: best option save radius * radius??
 
@@ -59,7 +58,6 @@ typedef struct s_bx
 {
 	t_vec3		center;
 	t_vec3		half_side;
-	t_material	material;
 }	t_bx;
 
 bool	interseccion_bx(t_ray *r, t_bx	*bx);
@@ -90,7 +88,6 @@ typedef struct s_cy
 	t_vec3		normal;
 	float		radius;
 	float		height;
-	t_material	material;
 }	t_cy;
 
 bool	interseccion_cy(t_ray *r, t_cy	*cy);

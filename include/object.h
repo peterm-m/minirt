@@ -6,7 +6,7 @@
 /*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 17:20:02 by pedromar          #+#    #+#             */
-/*   Updated: 2024/05/28 16:08:36 by pedromar         ###   ########.fr       */
+/*   Updated: 2024/05/29 15:40:23 by pedromar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,14 @@
 # define OBJECT_H
 
 # include "ft_vector.h"
-# include "minirt.h" 
 # include "shape.h"
+# include "minirt.h" 
 
 typedef struct s_object
 {
 	t_shape_type	type;
 	t_shape			shape;
+	t_material		material;
 	t_vec3			pos_obj;
 	t_vec3			rot_obj;
 	t_vec3			scale_obj;
@@ -31,7 +32,7 @@ typedef struct s_object
 /*
  *	create new object with n points
 */
-t_object	*object_new(t_shape_type type);
+t_object	*object_new(t_shape_type type, t_shape shape);
 
 /*
  *	destroy object obj

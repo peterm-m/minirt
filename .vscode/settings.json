@@ -1,5 +1,10 @@
 {
 	"files.associations": {
-		"shape.h": "c"
+		"shape.h": "c",
+		"minirt.h": "c",
+		"stdlib.h": "c",
+		"ft_vector.h": "c",
+		"material.h": "c",
+		"transformation.h": "c"
 	}
 }

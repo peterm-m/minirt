@@ -6,7 +6,7 @@
 /*   By: pedromar <pedromar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 14:05:23 by pedromar          #+#    #+#             */
-/*   Updated: 2024/05/28 16:06:39 by pedromar         ###   ########.fr       */
+/*   Updated: 2024/05/29 13:06:03 by pedromar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ t_vec2	texture_sp(t_vec3 *p, t_sp *sp)
 {
 	t_vec2	t;
 
+	(void)sp;
 	t.x = (1.0f + atan2(p->z, p->x) / M_PI) * 0.5f;
 	t.y = acosf(p->y) / M_PI;
 	return (t);
@@ -25,6 +26,7 @@ t_vec2	texture_pl(t_vec3 *p, t_pl *pl)
 {
 	t_vec2	t;
 
+	(void)pl;
 	t.x = p->x;
 	t.y = p->y;
 	return (t);
