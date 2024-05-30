@@ -12,9 +12,9 @@ static int	ft_parse_line(char *line)
 	static int	cam_flag = ZERO;
 	static int	lgh_flag = ZERO;
 
+	line = ft_jump_spaces(line);
 	if ('\n' == line[ZERO] || '\n' == line[ZERO])
 		return (EXIT_SUCCESS);
-	line = ft_jump_spaces(line);
 	
 }
 
