@@ -30,22 +30,28 @@
 # include "controls.h"
 # include "transformation.h"
 # include "wrappers.h"
+# include "parser.h"
 # include "get_next_line.h"
 
 # include "plotter.h"
 
 # ifndef M_PI
-#  define M_PI   3.14159265358979323846264338327950288
+#  define M_PI 3.14159265358979323846264338327950288
 # endif
+# ifndef M_PROJECT_LIMITS
+#  define M_PROJECT_LIMITS 1
+#  define OBJS_LIMIT 15
+#  define LIGHTS_LIMIT 5
+# endif
+
 
 typedef struct s_scene
 {
-	t_object	*objs;
-	t_camera	*cams;
-	t_light		*lights;
+	t_camera	cam;
+	t_object	objs[OBJS_LIMIT];
+	t_light		lights[LIGHTS_LIMIT];
 }				t_scene;
 
-int		ft_parser(t_scene *scene, int argc, char **argv);
 //
 void	*mallox(size_t size);
 int		render_loop(t_render *r);

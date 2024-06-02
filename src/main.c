@@ -12,6 +12,16 @@
 
 #include "minirt.h"
 
+int	init_scene_debug(t_scene	*scene)
+{
+	scene->cam->angle_of_view = ;
+	scene->cam->pos_cam
+
+	scene->lights
+
+	scene->objs
+}
+
 void	ft_image(t_render *r, t_win *win, int w, int h)
 {
 	r->img = (t_image *) mallox(sizeof(t_image));
@@ -44,10 +54,11 @@ t_render	*set_render(t_win *win)
 
 int main (int argc, char* argv[])
 {
-	t_scene scene;
+	t_scene	scene;
 
-	if (ft_parser(&scene, argc, argv))
-		return (EXIT_FAILURE);
+//	if (ft_parser(&scene, argc, argv))
+//		return (EXIT_FAILURE);
+	init_scene_debug(&scene);
 	printf("MINIRT %s %s\n", __DATE__, __TIME__);
 	t_win	win =  ft_program(1024, 1024, "minirt");
 	t_render *r = set_render(&win);

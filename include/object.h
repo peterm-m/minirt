@@ -15,7 +15,7 @@
 
 # include "ft_vector.h"
 # include "shape.h"
-# include "minirt.h" 
+# include "minirt.h"
 
 typedef struct s_object
 {
